@@ -1,2 +1,2 @@
-hellomake: hellomake.c hellofunc.c
-	gcc -o hellomake hellomake.c hellofunc.c -I.
+make: test/ArrayList/ArrayList.cpp
+	g++ -Wall -I source/ArrayList/ test/ArrayList/ArrayList.cpp
