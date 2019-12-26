@@ -3,16 +3,24 @@
 template <typename T>
 ArrayList<T>::ArrayList()
 {
-    m_curSize = 32;
+    m_allocatedSize = 32;
+    m_curSize = 0;
     m_arr = std::make_unique<T[]>(32);
 }
 
 template <typename T>
 ArrayList<T>::ArrayList(const std::initializer_list<T> &list)
 {
-    size_t list_size = list.size();
-    m_curSize = list_size;
-    m_arr = std::make_unique<T[]>(m_curSize);
+    m_curSize = list.size();
+    m_allocatedSize = 2 * m_curSize;
+    m_arr = std::make_unique<T[]>(m_allocatedSize);
+
+    size_t i = 0;
+    for (auto const &it : list)
+    {
+        m_arr[i] = it;
+        ++i;
+    }
 }
 
 template <typename T>
@@ -24,7 +32,7 @@ size_t ArrayList<T>::size() const
 template <typename T>
 void ArrayList<T>::resize(size_t n)
 {
-    if (n == m_curSize)
+    if (n == m_allocatedSize)
     {
         return;
     }
@@ -44,4 +52,28 @@ void ArrayList<T>::resize(size_t n)
 
     m_arr.reset(newArr.release());
     m_curSize = n;
+    m_allocatedSize = n;
+}
+
+template <typename T>
+size_t ArrayList<T>::capacity() const
+{
+    return sizeof(T) * m_allocatedSize;
+}
+
+template <typename T>
+bool ArrayList<T>::empty() const
+{
+    return m_curSize == 0;
+}
+
+template <typename T>
+void ArrayList<T>::shrink_to_fit()
+{
+    resize(m_curSize);
+}
+
+template <typename T>
+T &ArrayList<T>::operator[](const size_t ind)
+{
 }

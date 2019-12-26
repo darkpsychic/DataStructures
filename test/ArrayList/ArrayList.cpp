@@ -8,7 +8,7 @@ int main()
     ArrayList<int> list;
     ArrayList<int> list2({1, 2, 3, 4, 5});
 
-    assert(list.size() == 32);
+    assert(list.size() == 0);
     assert(list2.size() == 5);
 
     list2.resize(7);

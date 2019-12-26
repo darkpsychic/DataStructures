@@ -16,8 +16,8 @@ public:
     size_t size() const;
     void resize(size_t n);
     size_t capacity() const;
-    bool empty();
-    void reserve();
+    bool empty() const;
+    void shrink_to_fit();
 
     //element access
     T &operator[](const size_t ind);
@@ -34,6 +34,7 @@ public:
 
 private:
     std::unique_ptr<T[]> m_arr;
+    size_t m_allocatedSize;
     size_t m_curSize;
 };
 
