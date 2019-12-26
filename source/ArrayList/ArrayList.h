@@ -13,10 +13,9 @@ public:
     ArrayList(const std::initializer_list<T> &list);
 
     //capacity
-    size_t size();
-    size_t max_size();
+    size_t size() const;
     void resize(size_t n);
-    size_t capacity();
+    size_t capacity() const;
     bool empty();
     void reserve();
 
