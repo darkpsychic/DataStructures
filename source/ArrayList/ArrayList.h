@@ -13,6 +13,9 @@ public:
     //construct an ArrayList using an initialzier list
     ArrayList(const std::initializer_list<T> &list);
 
+    //relational operators
+    bool operator==(const ArrayList<T> &list);
+
     //capacity
     size_t size() const;
     void resize(size_t n);
@@ -21,7 +24,7 @@ public:
     void shrink_to_fit();
 
     //element access
-    T &operator[](const long long ind);
+    T &operator[](const long long ind) const;
     T &at(const long long ind);
     T &front();
     T &back();
@@ -29,8 +32,8 @@ public:
     //modifiers
     void push_back(const T &elem);
     void pop_back();
-    void insert(const T &elem, const size_t ind);
-    void erase(const size_t ind);
+    void insert(const T &elem, const long long ind);
+    void erase(const long long ind);
     void clear();
 
 private:
