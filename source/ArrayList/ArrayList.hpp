@@ -74,6 +74,30 @@ void ArrayList<T>::shrink_to_fit()
 }
 
 template <typename T>
-T &ArrayList<T>::operator[](const size_t ind)
+T &ArrayList<T>::operator[](const long long ind)
 {
+    if (ind < 0 || ind >= (long long)(m_curSize))
+    {
+        throw std::out_of_range("invalid index");
+    }
+
+    return m_arr[ind];
+}
+
+template <typename T>
+T &ArrayList<T>::at(const long long ind)
+{
+    return (*this)[ind];
+}
+
+template <typename T>
+T &ArrayList<T>::front()
+{
+    return at(0);
+}
+
+template <typename T>
+T &ArrayList<T>::back()
+{
+    return at((long long)(m_curSize)-1);
 }

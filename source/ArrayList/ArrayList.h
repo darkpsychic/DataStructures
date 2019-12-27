@@ -1,5 +1,6 @@
 #pragma once
 #include <initializer_list>
+#include <stdexcept>
 #include <memory>
 
 template <typename T>
@@ -20,8 +21,8 @@ public:
     void shrink_to_fit();
 
     //element access
-    T &operator[](const size_t ind);
-    T &at(const size_t ind);
+    T &operator[](const long long ind);
+    T &at(const long long ind);
     T &front();
     T &back();
 
